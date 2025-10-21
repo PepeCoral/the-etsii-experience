@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ebdf0c77c1f5874c92c4b1a931dc3cd, type: 3}
+  m_Name: Ignacio
+  m_EditorClassIdentifier: Assembly-CSharp::Card
+  mainText: "\xBFEstudiar PGPI?"
+  leftOptionName: Nop
+  leftEffects:
+  - mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 3966855927591076041
+  rightOptionName: SIP
+  rightEffects:
+  - mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 3966855927591076042
+  references:
+    version: 2
+    RefIds:
+    - rid: 3966855927591076041
+      type: {class: CardResourceEffect, ns: , asm: Assembly-CSharp}
+      data:
+        effects:
+        - value: -10
+          resource: 1
+        - value: 10
+          resource: 3
+    - rid: 3966855927591076042
+      type: {class: CardResourceEffect, ns: , asm: Assembly-CSharp}
+      data:
+        effects:
+        - value: 20
+          resource: 1
+        - value: -20
+          resource: 3
