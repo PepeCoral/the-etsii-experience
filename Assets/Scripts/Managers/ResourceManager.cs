@@ -1,7 +1,5 @@
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public enum GameResource 
 {
@@ -10,13 +8,15 @@ public enum GameResource
     Social,
     Mental
 }
-
 public class ResourceManager
 {
     public const int MIN_RESOURCE = 0;
-    public const int MAX_RESOURCE= 0;
+    public const int MAX_RESOURCE= 100;
+
 
     Dictionary<GameResource, int> resources;
+
+   
 
 
     public ResourceManager() 

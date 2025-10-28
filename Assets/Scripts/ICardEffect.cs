@@ -25,6 +25,19 @@ public class CardResourceEffect : ICardEffect
 
     public void apply()
     {
-        throw new System.NotImplementedException();
+        effects.ForEach(effect => GameManager.Instance.ModifyResources(effect));
     }
 }
+
+
+public class AddPriorityCardEffect : ICardEffect
+{
+    [SerializeField]
+    List<Card> cards;
+
+    public void apply()
+    {
+        cards.ForEach(card => GameManager.Instance.AddCardToPriorityQueue(card));
+    }
+}
+

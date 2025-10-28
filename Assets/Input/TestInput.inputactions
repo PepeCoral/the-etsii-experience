@@ -1,0 +1,55 @@
+{
+    "version": 1,
+    "name": "TestInput",
+    "maps": [
+        {
+            "name": "Test",
+            "id": "b6448adf-f269-412b-82f8-57b2c2ad2d3a",
+            "actions": [
+                {
+                    "name": "Left",
+                    "type": "Button",
+                    "id": "34394a41-ee60-4188-afb7-62c1b5595dd2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Right",
+                    "type": "Button",
+                    "id": "c3e99cc6-138e-45e2-be32-6ec77bcdcc7b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "24480565-e700-47d8-8f57-fe28fd5e94e9",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cf5d5eb1-eea3-40a1-89bd-d5d6e4bbf7d8",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
