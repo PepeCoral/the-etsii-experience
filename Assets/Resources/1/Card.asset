@@ -14,9 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Card
   mainText: Hola esto es una carta
   leftOptionName: A la izquierda
-  leftEffects: []
+  leftEffects:
+  - mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 3966856083781451817
   rightOptionName: Derechazo
   rightEffects: []
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 3966856083781451817
+      type: {class: CardResourceEffect, ns: , asm: Assembly-CSharp}
+      data:
+        effects:
+        - value: 20
+          resource: 0

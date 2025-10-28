@@ -1,4 +1,6 @@
 using HandyScripts;
+using NUnit.Framework.Constraints;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -11,12 +13,17 @@ public class GameManager: Singleton<GameManager>
 
 
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
         loadCards();
         resourceManager = new ResourceManager();
     }
 
+    public Dictionary<GameResource, int> getResources()
+    {
+        return resourceManager.resources;
+    }
     private void loadCards() {
         //TODO: Shuffle List
         cardManager = new CardManager(Resources.LoadAll<Card>("1").ToList());
