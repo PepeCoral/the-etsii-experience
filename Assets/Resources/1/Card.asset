@@ -18,15 +18,55 @@ MonoBehaviour:
   - mode: 1
     unityReference: {fileID: 0}
     rawReference:
-      rid: 3966856083781451817
+      rid: 3966856085524971561
+  - mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 3966856085524971571
   rightOptionName: Derechazo
-  rightEffects: []
+  rightEffects:
+  - mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 3966856085524971569
+  - mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 3966856085524971570
   references:
     version: 2
     RefIds:
-    - rid: 3966856083781451817
+    - rid: 3966856085524971561
       type: {class: CardResourceEffect, ns: , asm: Assembly-CSharp}
       data:
         effects:
         - value: 20
           resource: 0
+        - value: -20
+          resource: 1
+        - value: 20
+          resource: 2
+        - value: -20
+          resource: 3
+    - rid: 3966856085524971569
+      type: {class: CardResourceEffect, ns: , asm: Assembly-CSharp}
+      data:
+        effects:
+        - value: -20
+          resource: 0
+        - value: 20
+          resource: 1
+        - value: -20
+          resource: 2
+        - value: 20
+          resource: 3
+    - rid: 3966856085524971570
+      type: {class: AddPriorityCardEffect, ns: , asm: Assembly-CSharp}
+      data:
+        cards:
+        - {fileID: 11400000}
+    - rid: 3966856085524971571
+      type: {class: AddPriorityCardEffect, ns: , asm: Assembly-CSharp}
+      data:
+        cards:
+        - {fileID: 11400000}
