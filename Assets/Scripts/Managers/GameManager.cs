@@ -8,6 +8,7 @@ public class GameManager: Singleton<GameManager>
 {
     [SerializeField]
     private ResourceManager resourceManager;
+    [SerializeField]
     private CardManager cardManager;
 
 
@@ -17,9 +18,16 @@ public class GameManager: Singleton<GameManager>
     {
         base.Awake();
         loadCards();
+        cardManager.Initialize();
+
         resourceManager = new ResourceManager();
     }
 
+    public Card getCurrentCard()
+    {
+
+        return cardManager.currentCard;
+    }
     public Dictionary<GameResource, int> getResources()
     {
         return resourceManager.resources;
@@ -41,6 +49,11 @@ public class GameManager: Singleton<GameManager>
 
     public void MakeDecision(bool isLeft)
     {
-        if(cardManager.hasCards()) cardManager.makeDecision(isLeft);
+       cardManager.makeDecision(isLeft);
+    }
+
+    public void UpdateUI()
+    {
+        cardManager.ForceCardUpdate();
     }
 }

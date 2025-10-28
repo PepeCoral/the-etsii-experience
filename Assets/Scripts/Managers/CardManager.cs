@@ -1,21 +1,26 @@
 using System.Collections.Generic;
-using UnityEngine;
 
+[System.Serializable]
 public class CardManager
 {
 
     Queue<Card> mainCardQueue;
     Queue<Card> priorityCardQueue;
+    public Card currentCard;
 
-
+    public delegate void _OnCardUpdated();
+    public static event _OnCardUpdated OnCardUpdated;
     public CardManager(List<Card> cards)
     {
         mainCardQueue = new Queue<Card>(cards);
         priorityCardQueue = new Queue<Card>();
-        setCurrentCard(nextCard());
     }
 
-    public Card currentCard { private set; get; }
+    public void Initialize()
+    {
+        currentCard = nextCard();
+    }
+
 
 
     private Card nextCard() {
@@ -27,7 +32,9 @@ public class CardManager
         return mainCardQueue.Dequeue();
     }
 
-    public bool hasCards() => mainCardQueue.Count> 0 || priorityCardQueue.Count > 0;
+    private bool hasCards() {
+        return mainCardQueue.Count + priorityCardQueue.Count > 0; 
+    }
 
 
     public void makeDecision(bool isLeft)
@@ -48,13 +55,18 @@ public class CardManager
 
     private void setCurrentCard(Card card)
     {
+
         currentCard = card;
-        Debug.Log(currentCard.mainText);
-        Debug.Log("Left option: " +  currentCard.leftOptionName);
-        Debug.Log("Right option: " +  currentCard.rightOptionName);
+        if (OnCardUpdated != null) OnCardUpdated();
     }
 
 
-    
+    public void ForceCardUpdate() {
+        if (OnCardUpdated != null) OnCardUpdated();
+
+    }
+
+
+
 
 }

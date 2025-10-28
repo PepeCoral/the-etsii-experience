@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ResourcesUIManager : MonoBehaviour
 {
     [SerializeField] List<RectTransform> fillers;
+    private List<Image> images;
     [SerializeField] float animationSpeed;
 
     private Dictionary<GameResource, float> currentResources = new();
@@ -14,8 +16,14 @@ public class ResourcesUIManager : MonoBehaviour
 
     private void Start()
     {
-        currentResources = GameManager.Instance.getResources().ToDictionary(pair => pair.Key, pair => (float)pair.Value); 
+        currentResources = GameManager.Instance.getResources().ToDictionary(pair => pair.Key, pair => (float)pair.Value);
         targetResources = GameManager.Instance.getResources();
+
+        images  = new();
+        foreach (var item in fillers)
+        {
+            images.Add(item.transform.GetComponent<Image>());
+        }
     }
 
     private void OnEnable()
@@ -30,7 +38,6 @@ public class ResourcesUIManager : MonoBehaviour
 
     private void updateUI()
     {
-        print("Hola");
         targetResources = GameManager.Instance.getResources();
     }
 
@@ -40,11 +47,16 @@ public class ResourcesUIManager : MonoBehaviour
         {
             if (Mathf.Abs(currentResources[resource] - targetResources[resource]) > 0.01f)
             {
-
+                
                 currentResources[resource] = Mathf.Lerp(currentResources[resource], targetResources[resource], Time.deltaTime * animationSpeed);
                 float newYScale = (currentResources[resource] - ResourceManager.MIN_RESOURCE) / (float)ResourceManager.MAX_RESOURCE;
-                print(newYScale);
                 fillers[(int)resource].localScale = new Vector3(1, newYScale, 1);
+                images[(int)resource].color = currentResources[resource] > targetResources[resource] ? Color.red : Color.green;
+            }
+            else
+            {
+                images[(int)resource].color = Color.white;
+
             }
         }
     }

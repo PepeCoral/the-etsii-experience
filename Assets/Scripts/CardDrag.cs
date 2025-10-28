@@ -8,6 +8,7 @@ public class CardDragNewInput : MonoBehaviour
     private Camera mainCamera;
     private Vector3 offset;
     private bool isDragging = false;
+    [SerializeField] private Vector2 defaultTargetPosition;
     [SerializeField] private Vector3 targetPosition;
     [SerializeField] private float returnSpeed;
     [SerializeField] private float followSpeed;
@@ -19,6 +20,7 @@ public class CardDragNewInput : MonoBehaviour
     {
         mainCamera = Camera.main;
         targetPosition = transform.position;
+        defaultTargetPosition = targetPosition;
     }
 
     private void Update()
@@ -66,8 +68,8 @@ public class CardDragNewInput : MonoBehaviour
 
     private void returnToTheCenter()
     {
-        targetPosition = Vector3.zero;
-        transform.position = Vector3.zero;
+        targetPosition = defaultTargetPosition;
+        transform.position = defaultTargetPosition;
     }
 
     private void startDragging(Vector3 mouseWorldPos)
@@ -79,7 +81,7 @@ public class CardDragNewInput : MonoBehaviour
     private void setNewTargetPosition()
     {
         float targetX = transform.position.x > activationDistanceThreshold ? targetXOnActivation : (transform.position.x < -activationDistanceThreshold ? -targetXOnActivation : 0);
-        targetPosition = new Vector3(targetX, 0);
+        targetPosition = new Vector3(targetX, defaultTargetPosition.y);
     }
 
     private void returnToTargetPosition()
