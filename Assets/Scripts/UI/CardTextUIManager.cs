@@ -40,8 +40,8 @@ public class CardTextUIManager : MonoBehaviour
             textComponent.text = fullText.Substring(0, i);
             yield return new WaitForSeconds(typingSpeed);
         }
-        StartCoroutine(TypeText(left, GameManager.Instance.getCurrentCard().leftOptionName));
-        StartCoroutine(TypeText(right, GameManager.Instance.getCurrentCard().rightOptionName));
+        StartCoroutine(TypeText(left, GameManager.Instance.getCurrentCard().leftOptionText));
+        StartCoroutine(TypeText(right, GameManager.Instance.getCurrentCard().rightOptionText));
         yield return null;
 
 

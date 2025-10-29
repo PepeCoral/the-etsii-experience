@@ -1,4 +1,3 @@
-using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,4 +39,6 @@ public class AddPriorityCardEffect : ICardEffect
         cards.ForEach(card => GameManager.Instance.AddCardToPriorityQueue(card));
     }
 }
+
+
 

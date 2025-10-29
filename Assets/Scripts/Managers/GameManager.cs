@@ -33,8 +33,9 @@ public class GameManager: Singleton<GameManager>
         return resourceManager.resources;
     }
     private void loadCards() {
-        //TODO: Shuffle List
-        cardManager = new CardManager(Resources.LoadAll<Card>("1").ToList());
+        List<Card> cards = Resources.LoadAll<Card>("1").ToList();
+        Shuffle(cards);
+        cardManager = new CardManager(cards);
     }
 
     public void AddCardToPriorityQueue(Card card)
@@ -55,5 +56,17 @@ public class GameManager: Singleton<GameManager>
     public void UpdateUI()
     {
         cardManager.ForceCardUpdate();
+    }
+
+    void Shuffle<T>(List<T> list)
+    {
+        System.Random rng = new System.Random();
+        int n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = rng.Next(n + 1);
+            (list[n], list[k]) = (list[k], list[n]);
+        }
     }
 }

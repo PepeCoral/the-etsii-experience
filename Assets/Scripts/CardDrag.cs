@@ -1,9 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 using UnityEngine.InputSystem;
+public enum ScreenZone { LEFT, CENTER, RIGHT };
 
 [RequireComponent(typeof(Collider2D))]
-public class CardDragNewInput : MonoBehaviour
+public class CardDrag : MonoBehaviour
 {
     private Camera mainCamera;
     private Vector3 offset;
@@ -16,11 +18,74 @@ public class CardDragNewInput : MonoBehaviour
     [SerializeField] private float activationDistanceThreshold;
     [SerializeField] private float targetXOnActivation;
 
+    [SerializeField] private SpriteRenderer baseSpriteRenderer;
+
+    [SerializeField] private Sprite baseCard, reverseCard;
+    [SerializeField] private float turnOverSpeed;
+
+
+    
+
+    private ScreenZone currentScreenZone;
+
+    public delegate void _OnCardMovedToZone(ScreenZone screenZone);
+    public static event _OnCardMovedToZone OnCardMovedToZone;
+
+
     private void Start()
     {
         mainCamera = Camera.main;
         targetPosition = transform.position;
         defaultTargetPosition = targetPosition;
+    }
+
+
+    private void OnEnable()
+    {
+        CardManager.OnFinishedProcessingEffects += resetCard;
+    }
+
+    private void OnDisable()
+    {
+        CardManager.OnFinishedProcessingEffects += resetCard;
+        
+    }
+
+    private void resetCard()
+    {
+        targetPosition = defaultTargetPosition;
+        transform.position = defaultTargetPosition;
+        currentScreenZone = ScreenZone.CENTER;
+        if (OnCardMovedToZone != null)
+        {
+            OnCardMovedToZone(currentScreenZone);
+        }
+        StartCoroutine(DealCard());
+    }
+
+
+    IEnumerator DealCard()
+    {
+        baseSpriteRenderer.sprite = reverseCard;
+        yield return null;
+
+        for (int i = 0; i <90; i++ )
+        {
+            Vector3 newRotation = new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 1, transform.rotation.eulerAngles.z);
+            transform.rotation = Quaternion.Euler(newRotation);
+            yield return new WaitForSeconds(turnOverSpeed);
+        }
+
+        baseSpriteRenderer.sprite = baseCard;
+
+        for (int i = 0; i < 90; i++)
+
+        {
+            Vector3 newRotation = new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y - 1, transform.rotation.eulerAngles.z);
+            transform.rotation = Quaternion.Euler(newRotation);
+            yield return new WaitForSeconds(turnOverSpeed);
+        }
+
     }
 
     private void Update()
@@ -62,14 +127,23 @@ public class CardDragNewInput : MonoBehaviour
             else 
             { GameManager.Instance.MakeDecision(false); }
 
-                returnToTheCenter();
-        } 
+        }
+
+        if (currentScreenZone != getScreenZone())
+        {
+            currentScreenZone = getScreenZone();
+            if (OnCardMovedToZone != null)
+            {
+                OnCardMovedToZone(currentScreenZone);
+            }
+
+        }
+
     }
 
-    private void returnToTheCenter()
+    private ScreenZone getScreenZone()
     {
-        targetPosition = defaultTargetPosition;
-        transform.position = defaultTargetPosition;
+       return transform.position.x > activationDistanceThreshold ? ScreenZone.RIGHT : (transform.position.x < -activationDistanceThreshold ? ScreenZone.LEFT : ScreenZone.CENTER);
     }
 
     private void startDragging(Vector3 mouseWorldPos)

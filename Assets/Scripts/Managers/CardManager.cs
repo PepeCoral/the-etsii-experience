@@ -10,6 +10,9 @@ public class CardManager
 
     public delegate void _OnCardUpdated();
     public static event _OnCardUpdated OnCardUpdated;
+
+    public delegate void _OnFinishedProcessingEffects();
+    public static event _OnFinishedProcessingEffects OnFinishedProcessingEffects;
     public CardManager(List<Card> cards)
     {
         mainCardQueue = new Queue<Card>(cards);
@@ -46,6 +49,7 @@ public class CardManager
     private void processEffects(List<ICardEffect> effects) {
 
         effects.ForEach(effect => effect.apply());
+        if (OnFinishedProcessingEffects != null) OnFinishedProcessingEffects();
     }
 
 

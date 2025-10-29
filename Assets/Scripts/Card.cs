@@ -10,20 +10,25 @@ public class Card : ScriptableObject
 {
     [ResizableTextArea]
     [SerializeField] public string mainText;
+    [ResizableTextArea]
+    [SerializeField] public string name;
 
     [HorizontalLine(color: EColor.Gray)]
     
     [ResizableTextArea]
-    [SerializeField] public string leftOptionName;
+    [SerializeField] public string leftOptionText;
     [SerializeField]
     List<SerializableInterface<ICardEffect>> leftEffects;
 
     [HorizontalLine(color: EColor.Gray)]
 
     [ResizableTextArea]
-    [SerializeField] public string rightOptionName;
+    [SerializeField] public string rightOptionText;
     [SerializeField]
     List<SerializableInterface<ICardEffect>> rightEffects;
+
+    [SerializeField]
+    public Sprite sprite;
 
 
     public List<ICardEffect> getLeftEffects()

@@ -29,11 +29,13 @@ public class ResourcesUIManager : MonoBehaviour
     private void OnEnable()
     {
         ResourceManager.OnResourcesUpdated += updateUI;
+        CardDrag.OnCardMovedToZone += updateResourceNotifiers;
     }
 
     private void OnDisable()
     {
         ResourceManager.OnResourcesUpdated -= updateUI;
+        CardDrag.OnCardMovedToZone -= updateResourceNotifiers;
     }
 
     private void updateUI()
@@ -60,6 +62,12 @@ public class ResourcesUIManager : MonoBehaviour
             }
         }
     }
+
+    private void updateResourceNotifiers(ScreenZone screenZone)
+    {
+        print(screenZone);
+    }
+
 
 
 }

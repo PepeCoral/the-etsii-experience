@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ebdf0c77c1f5874c92c4b1a931dc3cd, type: 3}
-  m_Name: Card
+  m_Name: Card 1
   m_EditorClassIdentifier: Assembly-CSharp::Card
-  mainText: Hola esto es una carta 1
+  mainText: ' 2'
   leftOptionText: Opcion izquierda
   leftEffects:
   - mode: 1
