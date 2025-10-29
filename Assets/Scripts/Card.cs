@@ -10,8 +10,7 @@ public class Card : ScriptableObject
 {
     [ResizableTextArea]
     [SerializeField] public string mainText;
-    [ResizableTextArea]
-    [SerializeField] public string name;
+    [SerializeField] public string characterName;
 
     [HorizontalLine(color: EColor.Gray)]
     

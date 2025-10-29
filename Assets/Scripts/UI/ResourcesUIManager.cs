@@ -13,6 +13,8 @@ public class ResourcesUIManager : MonoBehaviour
     private Dictionary<GameResource, float> currentResources = new();
     private Dictionary<GameResource, int> targetResources = new Dictionary<GameResource, int>();
 
+    [SerializeField] private int bigResourceChangeThreshold;
+
 
     private void Start()
     {
@@ -65,7 +67,7 @@ public class ResourcesUIManager : MonoBehaviour
 
     private void updateResourceNotifiers(ScreenZone screenZone)
     {
-        print(screenZone);
+
     }
 
 
