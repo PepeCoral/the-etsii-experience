@@ -18,6 +18,7 @@ public class ResourceEffect {
 public class CardResourceEffect : ICardEffect
 {
     [SerializeField]
+    public
     List<ResourceEffect> effects;
     
 

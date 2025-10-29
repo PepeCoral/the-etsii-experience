@@ -28,6 +28,27 @@ public class GameManager: Singleton<GameManager>
 
         return cardManager.currentCard;
     }
+
+
+    public List<ResourceEffect> getResourceEffectsFromDecisions(bool isLeft) {
+        
+
+        List<ICardEffect> allEffects = isLeft? cardManager.currentCard.getLeftEffects(): cardManager.currentCard.getRightEffects();
+
+        List<ResourceEffect> resourceEffects = new List<ResourceEffect>();
+        foreach (ICardEffect effect in allEffects) {
+            if(effect.GetType() == typeof(CardResourceEffect))
+            {
+                CardResourceEffect cardResource = (CardResourceEffect)effect;
+                foreach (ResourceEffect resourceEffect in cardResource.effects)
+                {
+                    resourceEffects.Add(resourceEffect);
+                }
+            }
+        }
+
+        return resourceEffects;
+    }
     public Dictionary<GameResource, int> getResources()
     {
         return resourceManager.resources;

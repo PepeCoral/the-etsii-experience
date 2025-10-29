@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Card
   m_EditorClassIdentifier: Assembly-CSharp::Card
   mainText: Hola esto es una carta 1
+  characterName: 
   leftOptionText: Opcion izquierda
   leftEffects:
   - mode: 1
