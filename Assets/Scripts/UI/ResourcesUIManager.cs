@@ -76,10 +76,8 @@ public class ResourcesUIManager : MonoBehaviour
         }
 
         if(screenZone == ScreenZone.CENTER) return;
-        print("A");
 
         List<ResourceEffect> effects = GameManager.Instance.getResourceEffectsFromDecisions(screenZone!= ScreenZone.LEFT);
-        print(effects.Count);
         foreach (ResourceEffect effect in effects) {
             notifiersRenderers[(int) effect.resource].sprite = Mathf.Abs(effect.value) >= bigResourceChangeThreshold ? bigNotifier : smallNotifier;
             notifiersRenderers[(int)effect.resource].enabled = true;
