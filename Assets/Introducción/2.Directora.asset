@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ebdf0c77c1f5874c92c4b1a931dc3cd, type: 3}
+  m_Name: 2.Directora
+  m_EditorClassIdentifier: Assembly-CSharp::Card
+  mainText: "Saludos a todos y todas, bienvenidos a la inauguraci\xF3n del nuevo
+    curso en la ETSII."
+  characterName: Directora
+  leftOptionText: Seguir escuchando
+  leftEffects:
+  - mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 7811117139607683073
+  rightOptionText: Echarte un Clash Royale
+  rightEffects:
+  - mode: 1
+    unityReference: {fileID: 0}
+    rawReference:
+      rid: 7811117139607683072
+  sprite: {fileID: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: 7811117139607683072
+      type: {class: AddPriorityCardEffect, ns: , asm: Assembly-CSharp}
+      data:
+        cards:
+        - {fileID: 11400000, guid: 4db8566582015864c82f68c1371f9458, type: 2}
+    - rid: 7811117139607683073
+      type: {class: AddPriorityCardEffect, ns: , asm: Assembly-CSharp}
+      data:
+        cards:
+        - {fileID: 11400000, guid: 02256bdf6d2b0a542a758796d658248b, type: 2}
