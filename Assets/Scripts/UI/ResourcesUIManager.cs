@@ -14,6 +14,8 @@ public class ResourcesUIManager : MonoBehaviour
     private Dictionary<GameResource, int> targetResources = new Dictionary<GameResource, int>();
 
     [SerializeField] private int bigResourceChangeThreshold;
+    [SerializeField] private Sprite smallNotifier, bigNotifier;
+    [SerializeField] private List<Image> notifiersRenderers;
 
 
     private void Start()
@@ -67,6 +69,20 @@ public class ResourcesUIManager : MonoBehaviour
 
     private void updateResourceNotifiers(ScreenZone screenZone)
     {
+        foreach(Image renderer in notifiersRenderers)
+        {
+            renderer.sprite = null;
+            renderer.enabled = false;
+        }
+
+        if(screenZone == ScreenZone.CENTER) return;
+
+        List<ResourceEffect> effects = GameManager.Instance.getResourceEffectsFromDecisions(screenZone!= ScreenZone.LEFT);
+        foreach (ResourceEffect effect in effects) {
+            notifiersRenderers[(int) effect.resource].sprite = Mathf.Abs(effect.value) >= bigResourceChangeThreshold ? bigNotifier : smallNotifier;
+            notifiersRenderers[(int)effect.resource].enabled = true;
+        }
+
 
     }
 
